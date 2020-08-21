@@ -14,4 +14,21 @@ function drawGround() {
     c.fillRect(0, innerHeight - innerHeight / 10, innerWidth, innerHeight / 10);
 }
 
+function drawPlant(width, height) {
+    const x = innerWidth / 2;
+    const y = (innerHeight - innerHeight / 10) - height;
+
+    //draw trunk
+    c.fillRect(x, y, width, height);
+
+    //draw leaves
+    c.beginPath();
+    c.moveTo(x, y);
+    c.quadraticCurveTo(x - width / 2, y - height / 5, x - width * 2, y - height / 5);
+    c.quadraticCurveTo(x - width, y + height / 10, x, y);
+    c.stroke();
+    c.fill();
+}
+
 drawGround();
+drawPlant(10, 50);
