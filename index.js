@@ -10,4 +10,8 @@ window.addEventListener('resize', () => {
 
 const c = canvas.getContext('2d');
 
-c.fillRect(100, 100, 100, 100);
+function drawGround() {
+    c.fillRect(0, innerHeight - innerHeight / 10, innerWidth, innerHeight / 10);
+}
+
+drawGround();
