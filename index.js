@@ -22,10 +22,12 @@ function drawPlant(width, height) {
     c.fillRect(x, y, width, height);
 
     //draw leaves
+
+    //left leaf
     c.beginPath();
     c.moveTo(x, y);
-    c.quadraticCurveTo(x - width / 2, y - height / 5, x - width * 2, y - height / 5);
-    c.quadraticCurveTo(x - width, y + height / 10, x, y);
+    c.quadraticCurveTo(x - width, y - height / 3, x - width * 3, y - height / 5);
+    c.quadraticCurveTo(x - width * 2, y + height / 8, x, y);
     c.stroke();
     c.fill();
 }
