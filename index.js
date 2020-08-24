@@ -14,31 +14,59 @@ function drawGround() {
   c.fillRect(0, innerHeight - innerHeight / 10, innerWidth, innerHeight / 10);
 }
 
-function drawPlant(width, height) {
-  const x = innerWidth / 2;
-  const y = innerHeight - innerHeight / 10 - height;
+class Plant {
+  constructor(width, maxHeight) {
+    this.width = width;
+    this.height = maxHeight;
+    this.maxHeight = maxHeight;
+    this.leftLeaf = true;
+    this.rightLeaf = true;
+    this.grown = false;
+  }
 
-  //draw trunk
-  c.fillRect(x, y, width, height);
+  draw() {
+    c.clearRect(0, 0, innerWidth, innerHeight - innerHeight / 10);
 
-  //draw leaves
+    const x = innerWidth / 2;
+    const y = innerHeight - innerHeight / 10 - this.height;
 
-  //left leaf
-  c.beginPath();
-  c.moveTo(x, y);
-  c.quadraticCurveTo(x - width, y - height / 3, x - width * 3, y - height / 5);
-  c.quadraticCurveTo(x - width * 2, y + height / 8, x, y);
-  c.stroke();
-  c.fill();
+    //draw trunk
+    c.fillRect(x, y, this.width, this.height);
 
-  //right leaf
-  c.beginPath();
-  c.moveTo(x + width, y);
-  c.quadraticCurveTo(x + width * 2, y - height / 3, x + width * 4, y - height / 5);
-  c.quadraticCurveTo(x + width * 3, y + height / 8, x + width, y);
-  c.stroke();
-  c.fill();
+    //draw left leaf
+    if (this.leftLeaf) {
+      c.beginPath();
+      c.moveTo(x, y);
+      c.quadraticCurveTo(
+        x - this.width,
+        y - this.height / 3,
+        x - this.width * 3,
+        y - this.height / 5
+      );
+      c.quadraticCurveTo(x - this.width * 2, y + this.height / 8, x, y);
+      c.stroke();
+      c.fill();
+    }
+
+    //draw right leaf
+    if (this.rightLeaf) {
+      c.beginPath();
+      c.moveTo(x + this.width, y);
+      c.quadraticCurveTo(
+        x + this.width * 2,
+        y - this.height / 3,
+        x + this.width * 4,
+        y - this.height / 5
+      );
+      c.quadraticCurveTo(x + this.width * 3, y + this.height / 8, x + this.width, y);
+      c.stroke();
+      c.fill();
+    }
+  }
 }
 
 drawGround();
-drawPlant(10, 50);
+
+const plant = new Plant(10, 50);
+
+plant.draw();
