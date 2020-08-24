@@ -69,7 +69,7 @@ class Plant {
 
   grow() {
     if (this.height < this.maxHeight) {
-      this.height++;
+      this.height += 2;
     } else {
       if (!this.leftLeaf) {
         this.leftLeaf = true;
@@ -102,7 +102,7 @@ function animate() {
     plant.draw();
     console.log(plant);
 
-    window.setTimeout(() => animate(), 250);
+    window.setTimeout(() => animate(), 300);
   }
 }
 
