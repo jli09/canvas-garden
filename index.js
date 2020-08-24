@@ -25,8 +25,6 @@ class Plant {
   }
 
   draw() {
-    c.clearRect(0, 0, innerWidth, innerHeight - innerHeight / 10);
-
     const x = innerWidth / 2;
     const y = innerHeight - innerHeight / 10 - this.height;
 
@@ -58,7 +56,12 @@ class Plant {
         x + this.width * 4,
         y - this.height / 5
       );
-      c.quadraticCurveTo(x + this.width * 3, y + this.height / 8, x + this.width, y);
+      c.quadraticCurveTo(
+        x + this.width * 3,
+        y + this.height / 8,
+        x + this.width,
+        y
+      );
       c.stroke();
       c.fill();
     }
@@ -72,12 +75,12 @@ class Plant {
         this.leftLeaf = true;
         return;
       }
-      
+
       if (this.leftLeaf && !this.rightLeaf) {
         this.rightLeaf = true;
         return;
       }
-      
+
       if (this.leftLeaf && this.rightLeaf) {
         this.grown = true;
       }
@@ -85,14 +88,22 @@ class Plant {
   }
 }
 
-drawGround();
-
 const plant = new Plant(10, 50);
 
-plant.draw();
-console.log(plant);
+function animate() {
+  // requestAnimationFrame(animate);
+  if (!plant.grown) {
+    //clear section screen
+    c.clearRect(0, 0, innerWidth, innerHeight);
 
-while (!plant.grown) {
-  plant.grow();
-  console.log(plant);
+    drawGround();
+
+    plant.grow();
+    plant.draw();
+    console.log(plant);
+
+    window.setTimeout(() => animate(), 250);
+  }
 }
+
+animate();
