@@ -11,6 +11,7 @@ window.addEventListener('resize', () => {
 const c = canvas.getContext('2d');
 
 function drawGround() {
+  c.fillStyle = '#522a01';
   c.fillRect(0, innerHeight - innerHeight / 10, innerWidth, innerHeight / 10);
 }
 
@@ -28,6 +29,9 @@ class Plant {
     const x = innerWidth / 2;
     const y = innerHeight - innerHeight / 10 - this.height;
 
+    c.fillStyle = '#006400';
+    c.strokeStyle = '#006400';
+
     //draw trunk
     c.fillRect(x, y, this.width, this.height);
 
@@ -42,6 +46,8 @@ class Plant {
         y - this.height / 5
       );
       c.quadraticCurveTo(x - this.width * 2, y + this.height / 8, x, y);
+      c.strokeStyle = '#00b100';
+      c.fillStyle = '#00b100';
       c.stroke();
       c.fill();
     }
@@ -62,6 +68,8 @@ class Plant {
         x + this.width,
         y
       );
+      c.strokeStyle = '#00b100';
+      c.fillStyle = '#00b100';
       c.stroke();
       c.fill();
     }
@@ -91,16 +99,18 @@ class Plant {
 const plant = new Plant(10, 50);
 
 function animate() {
-  // requestAnimationFrame(animate);
   if (!plant.grown) {
     //clear section screen
     c.clearRect(0, 0, innerWidth, innerHeight);
+
+    //sky background
+    c.fillStyle = '#d0fdf8';
+    c.fillRect(0, 0, innerWidth, innerHeight);
 
     drawGround();
 
     plant.grow();
     plant.draw();
-    console.log(plant);
 
     window.setTimeout(() => animate(), 300);
   }
