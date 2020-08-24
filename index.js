@@ -17,10 +17,10 @@ function drawGround() {
 class Plant {
   constructor(width, maxHeight) {
     this.width = width;
-    this.height = maxHeight;
+    this.height = 0;
     this.maxHeight = maxHeight;
-    this.leftLeaf = true;
-    this.rightLeaf = true;
+    this.leftLeaf = false;
+    this.rightLeaf = false;
     this.grown = false;
   }
 
@@ -63,6 +63,26 @@ class Plant {
       c.fill();
     }
   }
+
+  grow() {
+    if (this.height < this.maxHeight) {
+      this.height++;
+    } else {
+      if (!this.leftLeaf) {
+        this.leftLeaf = true;
+        return;
+      }
+      
+      if (this.leftLeaf && !this.rightLeaf) {
+        this.rightLeaf = true;
+        return;
+      }
+      
+      if (this.leftLeaf && this.rightLeaf) {
+        this.grown = true;
+      }
+    }
+  }
 }
 
 drawGround();
@@ -70,3 +90,9 @@ drawGround();
 const plant = new Plant(10, 50);
 
 plant.draw();
+console.log(plant);
+
+while (!plant.grown) {
+  plant.grow();
+  console.log(plant);
+}
