@@ -16,8 +16,9 @@ function drawGround() {
 }
 
 class Plant {
-  constructor(width, maxHeight) {
-    this.width = width;
+  constructor(maxWidth, maxHeight) {
+    this.width = 0;
+    this.maxWidth = maxWidth;
     this.height = 0;
     this.maxHeight = maxHeight;
     this.leftLeaf = false;
@@ -76,6 +77,10 @@ class Plant {
   }
 
   grow() {
+    if (this.width < this.maxWidth) {
+      this.width += this.maxWidth/this.maxHeight;
+    }
+
     if (this.height < this.maxHeight) {
       this.height ++;
     } else {
