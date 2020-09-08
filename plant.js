@@ -25,8 +25,14 @@ class Plant {
         const x = innerWidth / 2;
         const y = innerHeight - innerHeight / 10 - this.height;
 
-        const leftBranch = new Branch(x, y, -.5, -.25, this.maxHeight);
-        const rightBranch = new Branch(x + this.width, y, .5, -.25, this.maxHeight);
+        const leftBranch = new Branch(x, y, -0.5, -0.25, this.maxHeight);
+        const rightBranch = new Branch(
+          x + this.width,
+          y,
+          0.5,
+          -0.25,
+          this.maxHeight
+        );
 
         this.branches.push(leftBranch);
         this.branches.push(rightBranch);
@@ -57,26 +63,24 @@ class Branch {
   constructor(x, y, dx, dy, maxHeight) {
     this.startX = x;
     this.startY = y;
-    this.x = x;
-    this.y = y;
     this.maxHeight = maxHeight;
     this.dx = dx; //rate of change for x
     this.dy = dy; //rate of change for y
+    this.changeX = dx;
+    this.changeY = dy;
   }
 
   grow() {
-    this.x += this.dx;
-    this.y += this.dy;
+    this.changeX += this.dx;
+    this.changeY += this.dy;
 
-    if (this.y < this.maxHeight) {
-      this.startY --;
-    }
+    this.startY -= 0.5;
   }
 
   draw() {
     c.beginPath();
     c.moveTo(this.startX, this.startY);
-    c.lineTo(this.x, this.y);
+    c.lineTo(this.startX + this.changeX, this.startY + this.changeY);
     c.strokeStyle = '#00b100';
     c.stroke();
   }
