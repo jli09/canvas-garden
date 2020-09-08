@@ -15,6 +15,7 @@ function drawGround() {
   c.fillRect(0, innerHeight - innerHeight / 10, innerWidth, innerHeight / 10);
 }
 
+
 //from plant.js
 const plant = new Plant(10, 100);
 
@@ -27,7 +28,9 @@ function animate() {
     drawGround();
 
     plant.grow();
-    plant.draw();
+    // plant.draw();
+
+    console.log(plant.height);
 
     window.setTimeout(() => animate(), 100);
   }
@@ -41,6 +44,5 @@ window.addEventListener('resize', () => {
 
   drawSky();
   drawGround();
-  plant.draw();
+  // plant.draw();
 });
-
