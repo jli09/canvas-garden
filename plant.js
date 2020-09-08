@@ -7,24 +7,30 @@ class Plant {
     this.grown = false;
   }
 
-  draw() {
+  drawTrunk() {
     const x = innerWidth / 2;
     const y = innerHeight - innerHeight / 10 - this.height;
 
     c.fillStyle = '#006400';
     c.strokeStyle = '#006400';
 
-    //draw trunk
     c.fillRect(x, y, this.width, this.height);
+  }
 
-    //draw left leaf w/ stem
+  drawLeaves() {
+    const x = innerWidth / 2;
+    const y =
+      this.height < this.maxHeight / 2
+        ? innerHeight - innerHeight / 10 - this.height
+        : innerHeight - innerHeight / 10 - this.maxHeight / 2;
 
     //stem values:
     const lsx = x - this.height / 10;
     const lsy = y - this.height / 10;
-    const rsx = x + this.height / 10;
+    const rsx = x + this.width + this.height / 10;
     const rsy = y - this.height / 10;
 
+    //draw left leaf w/ stem
     c.beginPath();
     c.moveTo(x, y);
     c.lineTo(lsx, lsy);
@@ -43,22 +49,28 @@ class Plant {
     //draw right leaf
     c.beginPath();
     c.moveTo(x + this.width, y);
+    c.lineTo(rsx, rsy);
     c.quadraticCurveTo(
-      rsx + this.width * 2,
+      rsx + this.width,
       rsy - this.height / 3,
-      rsx + this.width * 4,
+      rsx + this.width * 3,
       rsy - this.height / 5
     );
     c.quadraticCurveTo(
-      rsx + this.width * 3,
+      rsx + this.width * 2,
       rsy + this.height / 8,
-      rsx + this.width,
+      rsx,
       rsy
     );
     c.strokeStyle = '#00b100';
     c.fillStyle = '#00b100';
     c.stroke();
     c.fill();
+  }
+
+  draw() {
+    this.drawTrunk();
+    this.drawLeaves();
   }
 
   grow() {

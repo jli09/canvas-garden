@@ -16,7 +16,7 @@ function drawGround() {
 }
 
 //from plant.js
-const plant = new Plant(10, 50);
+const plant = new Plant(10, 100);
 
 function animate() {
   if (!plant.grown) {
