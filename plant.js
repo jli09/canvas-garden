@@ -25,13 +25,14 @@ class Plant {
         const x = innerWidth / 2;
         const y = innerHeight - innerHeight / 10 - this.height;
 
-        const leftBranch = new Branch(x, y, -0.5, -0.25, this.maxHeight);
+        const leftBranch = new Branch(x, y, -0.5, -0.25, this, false);
         const rightBranch = new Branch(
           x + this.width,
           y,
           0.5,
           -0.25,
-          this.maxHeight
+          this, 
+          true
         );
 
         this.branches.push(leftBranch);
@@ -60,10 +61,11 @@ class Plant {
 }
 
 class Branch {
-  constructor(x, y, dx, dy, maxHeight) {
+  constructor(x, y, dx, dy, root, right) {
+    this.root = root;       
+    this.right = right;       //true: right leaf; false: left leaf
     this.startX = x;
     this.startY = y;
-    this.maxHeight = maxHeight;
     this.dx = dx; //rate of change for x
     this.dy = dy; //rate of change for y
     this.changeX = dx;
@@ -75,6 +77,11 @@ class Branch {
     this.changeY += this.dy;
 
     this.startY -= 0.5;
+
+    if (this.right && this.root.width < this.root.maxWidth) {
+      this.startX += this.root.maxWidth/this.root.maxHeight;
+    }
+
   }
 
   draw() {
