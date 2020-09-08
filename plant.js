@@ -6,7 +6,7 @@ class Plant {
     this.maxHeight = maxHeight;
     this.grown = false;
     this.branches = [];
-    this.mod = Math.floor(this.maxHeight / 4);
+    this.mod = Math.floor(this.maxHeight / 6);
   }
 
   grow() {
@@ -25,8 +25,8 @@ class Plant {
         const x = innerWidth / 2;
         const y = innerHeight - innerHeight / 10 - this.height;
 
-        const leftBranch = new Branch(x, y, -.5, -.25);
-        const rightBranch = new Branch(x + this.width, y, .5, -.25);
+        const leftBranch = new Branch(x, y, -.5, -.25, this.maxHeight);
+        const rightBranch = new Branch(x + this.width, y, .5, -.25, this.maxHeight);
 
         this.branches.push(leftBranch);
         this.branches.push(rightBranch);
@@ -54,11 +54,12 @@ class Plant {
 }
 
 class Branch {
-  constructor(x, y, dx, dy) {
+  constructor(x, y, dx, dy, maxHeight) {
     this.startX = x;
     this.startY = y;
     this.x = x;
     this.y = y;
+    this.maxHeight = maxHeight;
     this.dx = dx; //rate of change for x
     this.dy = dy; //rate of change for y
   }
@@ -66,6 +67,10 @@ class Branch {
   grow() {
     this.x += this.dx;
     this.y += this.dy;
+
+    if (this.y < this.maxHeight) {
+      this.startY --;
+    }
   }
 
   draw() {

@@ -42,5 +42,5 @@ window.addEventListener('resize', () => {
 
   drawSky();
   drawGround();
-  // plant.draw();
+  plant.draw();
 });
