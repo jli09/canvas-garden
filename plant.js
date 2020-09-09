@@ -59,7 +59,6 @@ class Branch {
   constructor(percentageY, dx, dy, root, right) {
     this.root = root;
     this.right = right; //true: right leaf; false: left leaf
-    
     this.percentageY = percentageY;
     this.startYChange = 0.5;
     this.dx = dx; //rate of change for x

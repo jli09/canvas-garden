@@ -17,7 +17,7 @@ function drawGround() {
 
 
 //from plant.js
-const plant = new Plant(20, 400);
+const plant = new Plant(10, 100);
 
 function animate() {
   if (!plant.grown) {
@@ -43,5 +43,4 @@ window.addEventListener('resize', () => {
   drawSky();
   drawGround();
   plant.draw();
-  // plant.resetBranches();
 });
