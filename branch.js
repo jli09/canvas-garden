@@ -21,9 +21,9 @@ class Branch {
     if (this.right && this.root.width < this.root.maxWidth) {
       this.startX += this.root.maxWidth / this.root.maxHeight;
     }
-      
-      if (this.width > this.root.width * -1) {
-          this.width += this.root.maxWidth / this.root.maxHeight * -.5;
+
+    if (this.width > this.root.width * -1) {
+      this.width += (this.root.maxWidth / this.root.maxHeight) * -0.5;
     }
   }
 
