@@ -7,6 +7,7 @@ class Plant {
     this.grown = false;
     this.branches = [];
     this.mod = Math.floor(this.maxHeight / 4);
+    this.nextBranch = this.mod;
   }
 
   grow() {
@@ -21,12 +22,9 @@ class Plant {
     if (this.height < this.maxHeight) {
       this.height++;
 
-      if (this.height % this.mod === 0) {
-        // const x = innerWidth / 2;
-        // const y = innerHeight - innerHeight / 10 - this.height;
-
+      if (this.height === this.nextBranch) {
         const percentageY = Math.round((this.height / this.maxHeight) * 100);
-        const rateMod = Math.random() * 0.3 + 0.5;
+        const rateMod = Math.random() * 0.5 + 0.5;
 
         const leftBranch = new Branch(percentageY, -0.5 , -0.25, rateMod, this, false);
         const rightBranch = new Branch(percentageY, 0.5, -0.25, rateMod, this, true);
@@ -34,7 +32,8 @@ class Plant {
         this.branches.push(leftBranch);
         this.branches.push(rightBranch);
 
-        // console.log('new branch', this.branches);
+        this.nextBranch += Math.round((this.mod * (Math.random() * .5 + .75)));
+        console.log(this.nextBranch);
       }
     } else {
       this.grown = true;
