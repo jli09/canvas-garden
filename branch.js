@@ -1,14 +1,15 @@
 class Branch {
-  constructor(percentageY, dx, dy, root, right) {
+  constructor(percentageY, dx, dy, rateMod, root, right) {
     this.root = root;
     this.right = right; //true: right leaf; false: left leaf
     this.percentageY = percentageY;
     this.startYChange = -0.5;
-    this.dx = dx; //rate of change for x
-    this.dy = dy; //rate of change for y
+    this.rateMod = rateMod;
+    this.dx = dx * rateMod; //rate of change for x
+    this.dy = dy * rateMod; //rate of change for y
     this.width = this.root.width / -10;
-    this.changeX = dx;
-    this.changeY = dy;
+    this.changeX = this.dx;
+    this.changeY = this.dy;
   }
 
   grow() {
@@ -23,7 +24,7 @@ class Branch {
     }
 
     if (this.width > this.root.width * -1) {
-      this.width += (this.root.maxWidth / this.root.maxHeight) * -0.5;
+      this.width += (this.root.maxWidth / this.root.maxHeight) * .5 * this.rateMod;
     }
   }
 
