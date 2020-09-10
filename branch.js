@@ -5,7 +5,7 @@ class Branch {
     this.percentageY = percentageY;
     this.startYChange = -0.5;
     this.rateMod = rateMod;
-    this.dx = dx; //rate of change for x
+    this.dx = dx * rateMod; //rate of change for x
     this.dy = dy * rateMod; //rate of change for y
     this.width = this.root.width / -10;
     this.changeX = this.dx;

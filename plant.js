@@ -26,8 +26,8 @@ class Plant {
         const percentageY = Math.round((this.height / this.maxHeight) * 100);
         const rateMod = Math.random() * 0.5 + 0.5;
 
-        const leftBranch = new Branch(percentageY, -0.5 , -0.25, rateMod, this, false);
-        const rightBranch = new Branch(percentageY, 0.5, -0.25, rateMod, this, true);
+        const leftBranch = new Branch(percentageY, -0.4 , -0.2, rateMod, this, false);
+        const rightBranch = new Branch(percentageY, 0.4, -0.2, rateMod, this, true);
 
         this.branches.push(leftBranch);
         this.branches.push(rightBranch);
