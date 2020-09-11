@@ -33,7 +33,7 @@ class Plant {
         this.branches.push(rightBranch);
 
         this.nextBranch += Math.round((this.mod * (Math.random() * .5 + .75)));
-        console.log(this.nextBranch);
+        // console.log(this.nextBranch);
       }
     } else {
       this.grown = true;

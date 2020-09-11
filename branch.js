@@ -24,7 +24,7 @@ class Branch {
     }
 
     if (this.width > this.root.width * -1) {
-      this.width += (this.root.maxWidth / this.root.maxHeight) * .5 * this.rateMod;
+      this.width += (this.root.maxWidth / this.root.maxHeight) * .75 * this.rateMod;
     }
   }
 
@@ -45,8 +45,8 @@ class Branch {
       startY + this.startYChange + this.changeY + this.width
     );
     c.lineTo(startX, startY + this.startYChange + this.width);
-    c.strokeStyle = '#00b100';
-    c.fillStyle = '#00b100';
+    c.strokeStyle = '#006400';
+    c.fillStyle = '#006400';
     c.stroke();
     c.fill();
   }
